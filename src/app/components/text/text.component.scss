@@ -1,0 +1,42 @@
+.text-box {
+    width:fit-content;
+    position: absolute;
+
+    textarea:focus + .resize {
+        background-color: white;
+        border: solid 2px blue;
+        width: 20px;
+        height: 20px;
+    }
+
+    .resize {
+        cursor: nwse-resize;
+        background-color: transparent;
+        border: solid 2px transparent;
+        border-radius: 50%;
+        position: absolute;
+        right: -10px;
+        bottom: -10px;
+    }
+
+    .resize:hover {
+        background-color: red;
+    }
+
+    textarea {
+        display: block;
+        color: rgba(0, 0, 0, 0.87);
+        cursor: move;
+        padding: 10px;
+        font-size: 2rem;
+        overflow: hidden;
+        background-color: transparent;
+        border: none;
+        resize: none;
+
+        &:focus {
+            outline: solid 2px rgb(67, 70, 255);
+        }
+    }
+
+}
