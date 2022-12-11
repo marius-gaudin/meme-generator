@@ -3,7 +3,6 @@ $width-resize: 35px;
 .text-box {
     width:fit-content;
     position: absolute;
-    overscroll-behavior: contain;
 
     .resize {
         cursor: nwse-resize;
