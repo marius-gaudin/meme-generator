@@ -29,6 +29,7 @@ export class TextComponent {
   }
 
   resize(event: any) {
+    event.preventDefault();
     if(event.type == "pointerdown") {
       this.x = event.clientX;
       this.y = event.clientY;
@@ -38,6 +39,7 @@ export class TextComponent {
         document.onmousemove = null;
       }
       document.onmousemove = (e) => {
+        e.preventDefault();
         this.width += e.clientX - this.x;
         this.x = e.clientX;
         this.height += e.clientY - this.y;
@@ -52,6 +54,7 @@ export class TextComponent {
         document.ontouchmove = null;
       }
       document.ontouchmove = (e) => {
+        e.preventDefault();
         this.width += e.changedTouches[0].clientX - this.x;
         this.x = e.changedTouches[0].clientX;
         this.height += e.changedTouches[0].clientY - this.y;
