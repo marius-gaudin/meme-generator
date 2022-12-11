@@ -14,9 +14,7 @@ export class TextComponent {
   x: number = 0;
   y: number = 0;
   faUpRightAndDownLeftFromCenter = faUpRightAndDownLeftFromCenter;
-  active: boolean = true;
-
-  type: String = '';
+  active: boolean = false;
 
   ngAfterViewInit() {
     this.setHeight()
@@ -26,9 +24,12 @@ export class TextComponent {
     this.height = this.textArea.nativeElement.scrollHeight - 20;
   }
 
+  focus(state: boolean) {
+    this.active = state;
+  }
+
   resize(event: any) {
     if(event.type == "pointerdown") {
-      this.type = "pointerdown";
       this.x = event.clientX;
       this.y = event.clientY;
 
@@ -43,7 +44,6 @@ export class TextComponent {
         this.y = e.clientY;
       }
     } else {
-      this.type = "touch";
       this.x = event.changedTouches[0].clientX;
       this.y = event.changedTouches[0].clientY;
 
