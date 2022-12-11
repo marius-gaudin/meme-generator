@@ -1,4 +1,5 @@
 <div cdkDragBoundary="{{container}}" cdkDrag class="text-box">
     <textarea [style.width.px]="width" [style.height.px]="height" #textArea rows="1" (input)="setHeight()" cdkDragHandle></textarea>
-    <div class="resize" (pointerdown)="resize($event)"></div>
+    <div class="resize" (pointerdown)="resize($event)" (touchstart)="resize($event)"></div>
 </div>
+{{type}}
