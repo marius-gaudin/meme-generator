@@ -1,13 +1,8 @@
+$width-resize: 35px;
+
 .text-box {
     width:fit-content;
     position: absolute;
-
-    textarea:focus + .resize {
-        background-color: white;
-        border: solid 2px blue;
-        width: 20px;
-        height: 20px;
-    }
 
     .resize {
         cursor: nwse-resize;
@@ -15,12 +10,9 @@
         border: solid 2px transparent;
         border-radius: 50%;
         position: absolute;
-        right: -10px;
-        bottom: -10px;
-    }
-
-    .resize:hover {
-        background-color: red;
+        right: -$width-resize+(-5);
+        bottom: -$width-resize+(-5);
+        opacity: 0;
     }
 
     textarea {
@@ -33,9 +25,27 @@
         background-color: transparent;
         border: none;
         resize: none;
+    }
 
-        &:focus {
-            outline: solid 2px rgb(67, 70, 255);
+    &.active {
+        textarea {
+            border: solid 2px white;
+            outline: solid 2px rgb(112, 114, 230);
+        }
+
+        .resize {
+            background-color: rgba(0, 0, 0, 0.493);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: solid 2px white;
+            outline: solid 2px rgb(112, 114, 230);
+            width: $width-resize;
+            height: $width-resize;
+            opacity: 1;
+            .resize-icon {
+                color: white;
+            }
         }
     }
 

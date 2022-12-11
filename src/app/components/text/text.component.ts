@@ -1,4 +1,5 @@
 import { Component, Input, ViewChild } from '@angular/core';
+import { faUpRightAndDownLeftFromCenter } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-text',
@@ -12,6 +13,8 @@ export class TextComponent {
   height: number = 0;
   x: number = 0;
   y: number = 0;
+  faUpRightAndDownLeftFromCenter = faUpRightAndDownLeftFromCenter;
+  active: boolean = true;
 
   type: String = '';
 

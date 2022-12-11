@@ -1,5 +1,6 @@
-<div cdkDragBoundary="{{container}}" cdkDrag class="text-box">
+<div cdkDragBoundary="{{container}}" cdkDrag [class.active]="active" class="text-box">
     <textarea [style.width.px]="width" [style.height.px]="height" #textArea rows="1" (input)="setHeight()" cdkDragHandle></textarea>
-    <div class="resize" (pointerdown)="resize($event)" (touchstart)="resize($event)"></div>
+    <div class="resize" (pointerdown)="resize($event)" (touchstart)="resize($event)">
+        <fa-icon [icon]="faUpRightAndDownLeftFromCenter" flip="horizontal" size="lg" class="resize-icon"></fa-icon>
+    </div>
 </div>
-{{type}}
