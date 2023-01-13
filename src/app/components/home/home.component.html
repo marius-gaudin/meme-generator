@@ -6,7 +6,6 @@
     </app-header>
     <h2>Collection</h2>
 </div>
-<h3>dev : {{dev()}}</h3>
 <div class="collection">
     <div *ngIf="memes.length <= 0" class="noMeme">Vous n'avez pas encore créé de meme</div>
     <div (click)="update(meme._id)" *ngFor="let meme of memes">

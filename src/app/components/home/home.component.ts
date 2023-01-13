@@ -22,10 +22,6 @@ export class HomeComponent {
     })
   }
 
-  dev() {
-    return isDevMode()
-  }
-
   disconnect() {
     this.jwtTokenService.removeToken()
     this.router.navigate(['login'])

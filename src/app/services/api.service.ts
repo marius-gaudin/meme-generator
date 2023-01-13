@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { Meme } from '../models/meme';
@@ -12,7 +12,7 @@ export class ApiService {
   meme: Meme | null = null
   textSelected: TextElement | null = null
 
-  url: string = 'https://meme-generator-api-ashen.vercel.app/api/v1/';
+  url: string = isDevMode() ? 'http://localhost:5000/api/v1/':'https://meme-generator-api-ashen.vercel.app/api/v1/';
 
   constructor(private _http:HttpClient) { }
   
