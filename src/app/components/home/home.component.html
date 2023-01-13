@@ -1,0 +1,15 @@
+<div class="top">
+    <app-header>
+        <div class="options" [class.active]="openOptions" (click)="openOptions = !openOptions" right>
+            <button class="option"><fa-icon [icon]="faCog"></fa-icon></button>
+            <button class="link" (click)="disconnect()">Déconnexion</button>
+        </div>
+    </app-header>
+    <h2>Collection</h2>
+</div>
+<div class="collection">
+    <div *ngFor="let meme of memes">
+        <img [src]="meme.image">
+    </div>
+</div>
+<button class="create" (click)="createMeme()"><fa-icon [icon]="faPlus"></fa-icon> Créer un meme</button>

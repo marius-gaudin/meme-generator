@@ -1,0 +1,21 @@
+<div *ngIf="text !== null" (mousedown)="dragStart($event)" (touchstart)="dragStart($event)" [style.transform]="'translate3d('+(this.text.x*ratio)+'px,'+(this.text.y*ratio)+'px, 0) scale('+ratio+')'" [class.active]="active" class="text-box">
+    <textarea 
+        #textArea
+        [(ngModel)]="text.text"
+        [style.color]="text.color"
+        rows="1"
+        (focus)="focus(true, $event)" 
+        (blur)="focus(false, $event)" 
+        [style.font-size.px]="text.size" 
+        [style.width.px]="width" 
+        [style.height.px]="height"
+        [style.outline-width.px]="3/ratio" 
+        [style.border-width.px]="3/ratio"  
+        (input)="setHeight()" 
+        cdkDragHandle></textarea>
+    <div class="resize" tabindex="0" [style.outline-width.px]="3/ratio" [style.border-width.px]="3/ratio" (mousedown)="resize($event)" (touchstart)="resize($event)">
+        <fa-icon [icon]="faUpRightAndDownLeftFromCenter" flip="horizontal" size="lg" class="resize-icon"></fa-icon>
+    </div>
+</div>
+
+

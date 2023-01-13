@@ -1,0 +1,20 @@
+@import "theme";
+
+header {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    h1 {
+        font-size: 1.5rem;
+        max-width: 50%;
+        margin: 1rem;
+    }
+    .right {
+        position: absolute;
+        right: .5rem;
+    }
+    .left {
+        position: absolute;
+        left: .5rem;
+    }
+}

@@ -1,0 +1,74 @@
+@import "theme";
+html {
+    overflow-x: hidden;
+    width: 100vw;
+    height: 100vh;
+}
+.editor {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .top {
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+
+    .tools {
+        width: 90%;
+        margin: 5% 0;
+        display: flex;
+        justify-content: space-around;
+        div, input {
+            width: 65px;
+            height: 65px;
+            box-shadow: 0 0 3px 1px $shadow;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.7rem;
+            color: $primary;
+            font-weight: bold;
+
+            &.accent {
+                background-color: $accent;
+                color: $light;
+            }
+
+            &.selected {
+                background-color: $primary;
+                color: $light;
+            }
+
+            &.color {
+                box-sizing: border-box;
+                border: solid 4px $light;
+            }
+
+            &.hide {
+                opacity: 0;
+            }
+        }
+    }
+
+    .image-container {
+        width: fit-content;
+        box-shadow: 0 0 15px 1px $shadow;
+    
+        img {
+            display:block;
+            max-width: 95vw;
+            max-height: 60vh;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+        }
+    }
+}
+

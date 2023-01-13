@@ -1,6 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+@import "theme";
 
-html, body { 
-    background-color: rgb(219, 219, 219);
+body { 
+    background-color: $background;
+    margin: 0;
+    font-family: lexend;
+    color: $primary;
+    h1 {
+        font-weight: bold;
+        text-align: center;
+    }
 }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

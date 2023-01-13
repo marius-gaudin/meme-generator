@@ -1,0 +1,107 @@
+@import "theme";
+
+:host {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.background {
+    z-index: -1;
+    position: absolute;
+    width: 200%;
+    height: 100vh;
+    background-image: url(../../../assets/bottom_desktop.png), url(../../../assets/top_desktop.png);
+    background-position: left bottom, left top;
+    background-repeat: no-repeat, no-repeat;
+    background-size: 105%, 105%;
+    filter: blur(4px);
+}
+
+.content {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+        margin-top: 0;
+        max-width: 300px;
+    }
+    .errors {
+        height: 0;
+        margin: 0;
+        color: $warn;
+    }
+    .input {
+        width: 100%;
+        margin-top: 2rem;
+        height: 3rem;
+        display: flex;
+        flex-direction: column;
+        font-weight: bold;
+        border: solid 2px $primary;
+        border-radius: 3px;
+        label {
+            font-size: .7rem;
+            margin-left: .2rem;
+        }
+        input {
+            color: $primary;;
+            background-color: transparent;
+            border: none;
+            outline: none;
+            font-size: 1.5rem;
+            padding: .2rem .3rem;
+        }
+    }
+
+    .input:has(input:focus) {
+        border-color: $accent;
+        label {
+            color: $accent;
+        }
+    }
+
+    button {
+        width: 100%;
+        margin-top: 2rem;
+        height: 3rem;
+        border-radius: 3px;
+        font-weight: bold;
+        font-family: lexend;
+        font-size: .9rem;
+        letter-spacing: .09rem;
+    }
+
+    button:disabled {
+        opacity: .6;
+    }
+
+    .validate-bt {
+        background-color: $accent;
+        border: solid 2px $accent;
+        color: $light;
+    }
+
+    .link-bt {
+        background-color: transparent;
+        border: solid 2px transparent;
+        box-shadow: 0 0 3px 1px $shadow;
+        color: $accent;
+    }
+}
+
+@media (min-width: 560px) {
+    .background {
+        width: 100%;
+    }
+    .content {
+        width: 400px;
+        h1 {
+            margin-top: 0;
+            max-width: 300px;
+        }
+    }
+}

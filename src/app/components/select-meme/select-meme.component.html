@@ -1,0 +1,12 @@
+<div class="top">
+    <app-header>
+        <button class="back" (click)="back()" left><fa-icon [icon]="faChevronLeft"></fa-icon></button>
+    </app-header>
+    <input type="text" [(ngModel)]="search">
+</div>
+<div class="results">
+    <div *ngFor="let meme of getMemes()" [class.selected]="meme.name === selected?.name" (click)="setMeme(meme)">
+        <img [src]="meme.url">
+    </div>
+</div>
+<button class="create" (click)="continue()" *ngIf="selected"><span>{{selected.name}}</span>Continuer</button>

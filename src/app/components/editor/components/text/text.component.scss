@@ -1,0 +1,66 @@
+@import "theme";
+
+$width-resize: 100px;
+
+.text-box {
+    width: fit-content;
+    position: absolute;
+    transform-origin: top left;
+
+    .resize {
+        width: 0;
+        height: 0;
+        cursor: nwse-resize;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        right: calc(-1*$width-resize/2);
+        bottom: calc(-1*$width-resize/2);
+        background-color: $light;
+        
+        border-style: solid;
+        border-color: $light;
+
+        outline-style: solid;
+        outline-color: $accent;
+
+        .resize-icon {
+            color: $primary;
+            font-size: calc($width-resize/3);
+        }
+        opacity: 0;
+    }
+
+    textarea {
+        display: block;
+        color: black;
+        cursor: move;
+        padding: 10px;
+        overflow: hidden;
+        background-color: transparent;
+        resize: none;
+        border: none;
+
+        border-style: solid;
+        border-color: transparent;
+
+        outline-style: solid;
+        outline-color: transparent;
+    }
+
+    &.active {
+        textarea {
+            border-color: $light;
+            outline-color: $accent;
+        }
+
+        .resize {
+            width: $width-resize;
+            height: $width-resize;
+            opacity: 1;
+        }
+    }
+
+}

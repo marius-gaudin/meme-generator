@@ -1,0 +1,15 @@
+<div class="background"></div>
+<div class="content">
+    <h1>MEME GENERATOR</h1>
+    <p class="errors">{{errors}}</p>
+    <div class="input">
+        <label>email</label>
+        <input [(ngModel)]="email" (keydown.enter)="canValide() ? valid() : ''" type="email">
+    </div>
+    <div class="input">
+        <label>mot de passe</label>
+        <input [(ngModel)]="password" (keydown.enter)="canValide() ? valid() : ''" type="password">
+    </div>
+    <button class="validate-bt" [disabled]="canValide()" (click)="valid()">Se connecter</button>
+    <button class="link-bt">Créer un compte</button>
+</div>
