@@ -3,6 +3,7 @@
         #textArea
         [(ngModel)]="text.text"
         [style.color]="text.color"
+        [style.font-weight]="(text.bold ? 'bold' : 'normal')"
         rows="1"
         (focus)="focus(true, $event)" 
         (blur)="focus(false, $event)" 

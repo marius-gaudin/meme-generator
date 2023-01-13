@@ -1,0 +1,22 @@
+<div class="background"></div>
+<div class="content">
+    <h1>MEME GENERATOR</h1>
+    <h2>Créer un compte</h2>
+    <p class="errors">{{errors}}</p>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="input">
+            <label>email</label>
+            <input formControlName="email" type="email">
+        </div>
+        <div class="input">
+            <label>mot de passe</label>
+            <input formControlName="password" type="password">
+        </div>
+        <div class="input">
+            <label>confirmation mot de passe</label>
+            <input formControlName="confirmPassword" type="password">
+        </div>
+        <button class="submit-bt" type="submit" [disabled]="canValide()">Créer un compte</button>
+        <button class="link-bt" [routerLink]="['/login']">Se connecter</button>
+    </form>
+</div>

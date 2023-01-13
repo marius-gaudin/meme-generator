@@ -15,6 +15,16 @@ html {
         position: absolute;
         top: 0;
         width: 100%;
+        .back {
+            width: 40px;
+            height: 40px;
+            background-color: $background;
+            border: none;
+            box-shadow: 0 0 3px 1px $shadow;
+            border-radius: 4px;
+            color: $primary;
+            font-size: 1.2rem;
+        }
     }
 
     .tools {
@@ -22,7 +32,9 @@ html {
         margin: 5% 0;
         display: flex;
         justify-content: space-around;
-        div, input {
+        div, input, button {
+            border: none;
+            background-color: transparent;
             width: 65px;
             height: 65px;
             box-shadow: 0 0 3px 1px $shadow;
@@ -49,7 +61,7 @@ html {
                 border: solid 4px $light;
             }
 
-            &.hide {
+            &:disabled {
                 opacity: 0;
             }
         }

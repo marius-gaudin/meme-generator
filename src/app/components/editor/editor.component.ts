@@ -1,7 +1,7 @@
-import { Component, NgZone, ViewChild } from '@angular/core';
+import { Component, HostListener, NgZone, ViewChild } from '@angular/core';
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
-import { faShare, faMousePointer, faBold, faLeftLong, faRightLong, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { faDownload, faChevronLeft, faMousePointer, faBold, faLeftLong, faRightLong, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { ApiService } from 'src/app/services/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Meme } from 'src/app/models/meme';
@@ -19,18 +19,17 @@ export class EditorComponent {
   initialWidth: number = 800
   ratio: number = 1
 
-  colorTool = 'colorTool'
-  fontSizeTool = 'fontSizeTool'
   selectTool = 'selectTool'
   addTextTool = 'addTextTool'
   tool = this.selectTool
 
   // Icons
-  faShare: IconDefinition = faShare
+  faDownload: IconDefinition = faDownload
   faMousePointer: IconDefinition = faMousePointer
   faBold: IconDefinition = faBold
   faLeft: IconDefinition = faLeftLong
   faRight:IconDefinition = faRightLong
+  faChevronLeft: IconDefinition = faChevronLeft;
 
   constructor(private zone: NgZone, public apiService: ApiService, private route: ActivatedRoute, private router: Router){
     this.route.params.subscribe(params => {
@@ -39,7 +38,6 @@ export class EditorComponent {
         this.apiService.getMemeById(id).subscribe({
           next: (meme: Meme) => {
             this.apiService.meme = meme
-            this.apiService.texts = meme.texts
           }, 
           error: () => {
             this.router.navigate([''])
@@ -49,12 +47,6 @@ export class EditorComponent {
         this.router.navigate([''])
       }
     })
-  }
-
-  add() {
-    if(this.apiService.textSelected?.size) {
-      this.apiService.textSelected.size += 10
-    }
   }
 
   ngAfterViewInit() {
@@ -77,26 +69,58 @@ export class EditorComponent {
     }
   }
 
+  setBold() {
+    if(typeof this.apiService?.textSelected?.bold === 'boolean') {
+      this.apiService.textSelected.bold = !this.apiService.textSelected.bold
+    }
+  }
+
+  add() {
+    if(this.apiService.textSelected?.size) {
+      this.apiService.textSelected.size += 10
+    }
+  }
+
   addText(event: MouseEvent) {
     if(this.tool === this.addTextTool && this.apiService.meme) {
       this.tool = this.selectTool
       const top = this.container.nativeElement.getBoundingClientRect().y
       const left = this.container.nativeElement.getBoundingClientRect().x
-      this.apiService.addText((event.x-left)/this.ratio, ((event.y-top)/this.ratio), 'black', 100).subscribe(text => {
-        this.apiService.textSelected = text
-        if(this.apiService.meme?.texts) {
-          this.apiService.meme.texts.push(text)
-        } else if (this.apiService.meme) {
-          this.apiService.meme.texts = [text]
-        }
+      const newText: TextElement = {x: (event.x-left)/this.ratio, y: ((event.y-top)/this.ratio), color: 'black', size: 100, bold: false, _id: undefined, text: ''}
+      this.apiService.textSelected = newText
+      if(this.apiService.meme?.texts) {
+        this.apiService.meme.texts.push(newText)
+      } else if (this.apiService.meme) {
+        this.apiService.meme.texts = [newText]
+      }
+    }
+  }
+
+  back() {
+    if(this.apiService.meme) {
+      this.apiService.saveTexts(this.apiService.meme.texts.filter(text => text.text)).subscribe(result => {
+        this.router.navigate([''])
       })
     }
   }
 
+  @HostListener('window:beforeunload')
+  doSomething() {
+    if(this.apiService.meme) {
+      this.apiService.saveTexts(this.apiService.meme.texts.filter(text => text.text)).subscribe(result => {})
+    }
+  }
+
   download() {
+    this.container.nativeElement.style.position = 'absolute'
+    this.container.nativeElement.style.top = 0
+    this.container.nativeElement.style.left = 0
     domtoimage.toBlob(this.container.nativeElement)
-      .then(function (blob) {
-        saveAs(blob, 'Meme');
+      .then((blob) => {
+        saveAs(blob, this.apiService.meme?.name ? this.apiService.meme.name : 'meme')
+        this.container.nativeElement.style.position = null
+        this.container.nativeElement.style.top = null
+        this.container.nativeElement.style.left = null
       });
   }
 }

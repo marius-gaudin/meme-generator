@@ -7,6 +7,7 @@
 <div class="results">
     <div *ngFor="let meme of getMemes()" [class.selected]="meme.name === selected?.name" (click)="setMeme(meme)">
         <img [src]="meme.url">
+        <div class="name">{{ meme.name }}</div>
     </div>
 </div>
 <button class="create" (click)="continue()" *ngIf="selected"><span>{{selected.name}}</span>Continuer</button>

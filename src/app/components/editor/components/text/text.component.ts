@@ -51,7 +51,7 @@ export class TextComponent {
       this.active = state;
       this.apiService.textSelected = this.text
     } else {
-      if(event?.relatedTarget?.nodeName === 'INPUT') {
+      if(event?.relatedTarget?.nodeName === 'INPUT' || event?.relatedTarget?.nodeName === 'BUTTON') {
         this.textArea.nativeElement.focus()
         return
       }
@@ -59,10 +59,8 @@ export class TextComponent {
       if(this.apiService.textSelected === this.text) {
         this.apiService.textSelected = null
       }
-      if(this.text?.text === '' && typeof this.text?._id === 'string') {
-        this.apiService.deleteText(this.text?._id).subscribe(()=> {
-          this.apiService.texts.splice(this.apiService.texts.findIndex(text => text._id === this.text?._id), 1)
-        })
+      if(this.text?.text === '' && typeof this.text?._id === 'string' && this.apiService.meme) {
+        this.apiService.meme.texts.splice(this.apiService.meme.texts.findIndex(text => text._id === this.text?._id), 1)
       }
     }
   }

@@ -1,13 +1,24 @@
 <div class="editor">
-    <app-header class="top"></app-header>
+    <app-header class="top">
+        <button class="back" (click)="back()" left><fa-icon [icon]="faChevronLeft"></fa-icon></button>
+    </app-header>
     <div class="tools">
-        <input [class.hide]="!apiService.textSelected" [value]="this.apiService.textSelected?.color ? this.apiService.textSelected?.color : 'black'" (input)="setColor(color.value)" type="color" class="color" #color/>
-        <div [class.hide]="!apiService.textSelected" (click)="add()">15</div>
-        <div [class.hide]="!apiService.textSelected"><fa-icon [icon]="faBold"></fa-icon></div>
-        <div class="accent"><fa-icon [icon]="faShare"></fa-icon></div>
+        <input [disabled]="!apiService.textSelected" 
+                [value]="this.apiService.textSelected?.color ? this.apiService.textSelected?.color : 'black'" 
+                (input)="setColor(color.value)" 
+                type="color" 
+                class="color" 
+                #color/>
+        <button [disabled]="!apiService.textSelected" 
+                (click)="add()">15</button>
+        <button [class.selected]="apiService.textSelected && apiService.textSelected.bold" 
+                [disabled]="!apiService.textSelected"
+                (click)="setBold()">
+                <fa-icon [icon]="faBold"></fa-icon></button>
+        <button class="accent" (click)="download()"><fa-icon [icon]="faDownload"></fa-icon></button>
     </div>
     <div class="image-container" #container (click)="addText($event)">
-        <app-text *ngFor="let text of apiService?.texts" [text]="text" [ratio]="ratio"></app-text>
+        <app-text *ngFor="let text of apiService?.meme?.texts" [text]="text" [ratio]="ratio"></app-text>
         <img [src]="apiService.meme?.image" draggable="false"/>
     </div>
     <div class="tools">

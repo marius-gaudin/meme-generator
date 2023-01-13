@@ -6,6 +6,4 @@ export interface TextElement {
     color: string
     size: number
     bold: boolean
-    createdAt: Date | undefined
-    updatedAt: Date | undefined
 }

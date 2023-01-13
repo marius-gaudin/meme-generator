@@ -38,8 +38,7 @@ export class SelectMemeComponent {
 
   continue() {
     if(this.selected) {
-      this.apiService.createMeme(this.selected.url).subscribe(newMeme => {
-        console.log(newMeme)
+      this.apiService.createMeme(this.selected.url, this.selected.name).subscribe(newMeme => {
         this.router.navigate(['editor', newMeme._id])
       })
     }

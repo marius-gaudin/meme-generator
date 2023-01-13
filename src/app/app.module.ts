@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +15,7 @@ import { LoginComponent } from './components/login/login.component';
 import { TokenInterceptorProvider } from './auth/token.interceptor';
 import { HeaderComponent } from './components/header/header.component';
 import { SelectMemeComponent } from './components/select-meme/select-meme.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SelectMemeComponent } from './components/select-meme/select-meme.compon
     HomeComponent,
     LoginComponent,
     HeaderComponent,
-    SelectMemeComponent
+    SelectMemeComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +35,8 @@ import { SelectMemeComponent } from './components/select-meme/select-meme.compon
     DragDropModule,
     FontAwesomeModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [TokenInterceptorProvider],
   bootstrap: [AppComponent]
