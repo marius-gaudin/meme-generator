@@ -1,4 +1,4 @@
-import { NgModule, isDevMode } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -16,7 +16,6 @@ import { TokenInterceptorProvider } from './auth/token.interceptor';
 import { HeaderComponent } from './components/header/header.component';
 import { SelectMemeComponent } from './components/select-meme/select-meme.component';
 import { RegisterComponent } from './components/register/register.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -37,13 +36,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     FontAwesomeModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: !isDevMode(),
-      // Register the ServiceWorker as soon as the application is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
-    })
+    ReactiveFormsModule
   ],
   providers: [TokenInterceptorProvider],
   bootstrap: [AppComponent]
